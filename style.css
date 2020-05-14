@@ -1,0 +1,35 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+canvas {
+  display: block;
+}
+body{
+  background:#92bde7;
+  color:#485e74;
+  line-height:1.6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding:1em;
+}
+.btn-default{
+  background: #000;
+  color: #92bde7;
+}
+.h{
+  color : blue;
+}
+.b{
+  color : blueviolet;
+}
+#trigger{
+  position : fixed;
+  top : 85%;
+  -webkit-transform: translateX(-75%);
+  -ms-transform: translateX(-75%);
+  transform: translateX(-75%);
+  
+}
+#trigger a:hover {
+ background-color : transparent;
+}

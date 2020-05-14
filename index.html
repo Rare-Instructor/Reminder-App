@@ -1,0 +1,326 @@
+<!DOCTYPE html><html>
+    <head>
+        <title>Reminder App</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.css" />
+    <script src="p5.js"></script>
+    <script src="p5.dom.min.js"></script>
+    <script src="p5.sound.min.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+<script src="./p5.play.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/p5.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.dom.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.8.0/addons/p5.sound.min.js"></script>
+<script src="jquery.js"></script>
+<script src="bootstrap/js/bootstrap-timepicker.js"></script>
+<script src="bootstrap/js/bootstrap-timepicker.min.js"></script>
+<link href="bootstrap/css/bootstrap-timepicker.css" rel="stylesheet"></link>
+<link href="bootstrap/css/bootstrap-timepicker.min.css" rel="stylesheet"></link>
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-database.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyDmUQRknZAKySnygwxg-pGo4NTDoPoChgY",
+    authDomain: "medication-reminder-a3dcc.firebaseapp.com",
+    databaseURL: "https://medication-reminder-a3dcc.firebaseio.com",
+    projectId: "medication-reminder-a3dcc",
+    storageBucket: "medication-reminder-a3dcc.appspot.com",
+    messagingSenderId: "761556940456",
+    appId: "1:761556940456:web:49d18150119029491a349d"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+</script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.js">
+    <link rel="stylesheet" type="text/css" href="bootstrap/css/bootstrap.css">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script src="bootstrap/js/bootstrap.js"></script>
+    <meta charset="utf-8">
+ <!-- ----------------------------------------------Nav bar-------------------------------------------------------- -->
+  </head>
+  <body class="b">
+    <nav class="navbar navbar-custom navbar-expand-lg navbar-light bg-info navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <img src="pill.jpg" style="width: 50px; height: 50px;"></img>
+                <a class="navbar-brand" style="padding: 15px; font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center; color :white;">Reminder App</a>
+            </div>
+            
+            <ul class="nav navbar-nav">
+              
+            </ul>
+        </div>
+        </nav>
+        <header>
+            <div class="text-center" >
+                <h2>Reminding the daily tasks </h2>
+                <p>Log in to our newsletter</p>
+            </div>
+<!------------------------------------------------------- Login form ----------------------------------------------->
+            <div class="jumbotron" id="login-form">
+            <div class="container-fluid">
+                <form class="form-group">
+                  <p>  <label for="login-name" style="font-size: 30px;">Enter your username</label>
+                    <input type="text" class="form-control"placeholder="First and last name" id="login-name"></input required></p>
+
+                    <p><label for="login-email"style="font-size: 30px;" >Enter your Email-adress</label>
+                    <input type="email" class="form-control"placeholder="name@domain.com" id="login-email"></input required></p>
+
+                    <p><label for="login-password" style="font-size: 30px;">Enter the password</label>
+                    <input type="password" class="form-control"id="login-password"></input required></p>
+
+                    <input type="submit" class="btn btn btn-primary btn-block" id="login-submit"></input>
+                </form>
+                <a class="btn btn-primary btn-block" style="border-radius: 10px; color : white;" href="form/index.html">New user?Sign up</a>
+            </div>
+        </div>
+            
+            <br><br><br>
+
+           
+</header>
+<!-------------------------------------------------- Add event modal ----------------------------------------->
+
+ <div class="container-fluid">
+
+     <div class="text-right">
+       <div class="text-left" > Press the '+' icon to add event >> </div>
+       <a class="btn btn-danger btn-sm" style="color: white;" id="del-all-list">Delete all</a>
+<a  data-toggle="modal" style="padding : 15px; color:darkslateblue; font-size: 50px; " data-target="#addEventModal" class="icon-plus-sign" id="trigger"></a></div>
+  
+ 
+  <div class="modal fade" id="addEventModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+           
+          <h5 class="modal-title" id="ModalLabel">Add event</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+    </div>
+        <div class="modal-body" id="event-body">
+
+          <div id="addEvent">
+            <div class="container-fluid">
+              <form class="form-group">
+            <label for="event-name">Enter event name</label>
+            <input type="text" id="event-name" class="form-control" required></input>
+        
+            <label for="event-day">Day</label>
+            <select class="form-control" id="event-day" required>
+              <option>Sunday</option>
+              <option>Monday</option>
+              <option>Tuesday</option>
+              <option>Wednesday</option>
+              <option>Thursday</option>
+              <option>Friday</option>
+              <option>Saturday</option>
+            </select>
+        <br>
+        <div class="input-group bootstrap-timepicker timepicker">
+        <label for="event-time">Enter hours</label>
+        <select id="event-time" type="text" class="form-control input-small" required>
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+          <option>6</option>
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+          <option>13</option>
+          <option>14</option>
+          <option>15</option>
+          <option>16</option>
+          <option>17</option>
+          <option>18</option>
+          <option>19</option>
+          <option>20</option>
+          <option>21</option>
+          <option>22</option>
+          <option>23</option>
+          <option>24</option>
+        </select>
+       
+        <label for="event-min">Enter Minutes</label>
+        <select id="event-min" type="text" class="form-control input-small" required>
+          <option>00</option>
+          <option>10</option>
+          <option>15</option>
+          <option>20</option>
+          <option>25</option>
+          <option>30</option>
+          <option>35</option>
+          <option>40</option>
+          <option>45</option>
+          <option>50</option>
+          <option>55</option>
+        </select>
+        <span class="input-group-addon"><i class="icon-time icon-2x"></i></span>
+      
+        </div>
+        
+        <br>
+            <label for="event-note">Note</label>
+            <textarea id="event-note"></textarea> 
+        
+            <input type="submit" class="btn btn-primary" id="event-submit"></input>
+          </form>
+          </div>
+          </div>
+          
+        <div class="modal-footer">
+       
+        </div>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  
+<!-- ------------------------------------------------ Event listing ------------------------------------------>
+<br><br>
+<div class="jumbotron" id="list-1">
+    <a id="list-name-1">NA<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+    <i class="icon-bell" id="list-time-1">&nbsp;NA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>
+     <i class="icon-ok-sign" id="list-day-1"> &nbsp;NA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+     </i><div class="text-right"><a style="color : black;" id="del-event-1"><i class="icon-trash"></i></a><hr></div>
+   <a id="list-note-1">NA<b>&nbsp;&nbsp;</b></a> 
+</div>
+
+<div class="jumbotron" id="list-2">
+  <a id="list-name-2">NA<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+  <i class="icon-bell" id="list-time-2">&nbsp;NA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>
+   <i class="icon-ok-sign" id="list-day-2"> &nbsp;NA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+   </i><div class="text-right"><a style="color : black;" id="del-event-2"><i class="icon-trash"></i></a><hr></div>
+ <a id="list-note-2">NA<b>&nbsp;&nbsp;</b></a> 
+</div>
+
+<div class="jumbotron" id="list-3">
+  <a id="list-name-3">NA<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+  <i class="icon-bell" id="list-time-3">&nbsp;NA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>
+   <i class="icon-ok-sign" id="list-day-3"> &nbsp;NA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+   </i><div class="text-right"><a style="color : black;" id="del-event-3"><i class="icon-trash"></i></a><hr></div>
+ <a id="list-note-3">NA<b>&nbsp;&nbsp;</b></a> 
+</div>
+
+<div class="jumbotron" id="list-4">
+  <a id="list-name-4">NA<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+  <i class="icon-bell" id="list-time-4">&nbsp;NA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>
+   <i class="icon-ok-sign" id="list-day-4"> &nbsp;NA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+   </i><div class="text-right"><a style="color : black;" id="del-event-4"><i class="icon-trash"></i></a><hr></div>
+ <a id="list-note-4">NA<b>&nbsp;&nbsp;</b></a> 
+</div>
+
+<div class="jumbotron" id="list-5">
+  <a id="list-name-5">NA<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+  <i class="icon-bell" id="list-time-5">&nbsp;NA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>
+   <i class="icon-ok-sign" id="list-day-5"> &nbsp;NA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+   </i><div class="text-right"><a style="color : black;" id="del-event-5"><i class="icon-trash"></i></a><hr></div>
+ <a id="list-note-5">NA<b>&nbsp;&nbsp;</b></a> 
+</div>
+
+<div class="jumbotron" id="list-6">
+  <a id="list-name-6">NA<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+  <i class="icon-bell" id="list-time-6">&nbsp;NA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>
+   <i class="icon-ok-sign" id="list-day-6"> &nbsp;NA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+   </i><div class="text-right"><a style="color : black;" id="del-event-6"><i class="icon-trash"></i></a><hr></div>
+ <a id="list-note-6">NA<b>&nbsp;&nbsp;</b></a> 
+</div>
+
+<div class="jumbotron" id="list-7">
+  <a id="list-name-7">NA<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+  <i class="icon-bell" id="list-time-7">&nbsp;NA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>
+   <i class="icon-ok-sign" id="list-day-7"> &nbsp;NA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+   </i><div class="text-right"><a style="color : black;" id="del-event-7"><i class="icon-trash"></i></a><hr></div>
+ <a id="list-note-7">NA<b>&nbsp;&nbsp;</b></a> 
+</div>
+
+<div class="jumbotron" id="list-8">
+  <a id="list-name-8">NA<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+  <i class="icon-bell" id="list-time-8">&nbsp;NA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>
+   <i class="icon-ok-sign" id="list-day-8"> &nbsp;NA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+   </i><div class="text-right"><a style="color : black;" id="del-event-8"><i class="icon-trash"></i></a><hr></div>
+ <a id="list-note-8">NA<b>&nbsp;&nbsp;</b></a> 
+</div>
+
+<div class="jumbotron" id="list-9">
+  <a id="list-name-9">NA<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+  <i class="icon-bell" id="list-time-9">&nbsp;NA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>
+   <i class="icon-ok-sign" id="list-day-9"> &nbsp;NA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+   </i><div class="text-right"><a style="color : black;" id="del-event-9"><i class="icon-trash"></i></a><hr></div>
+ <a id="list-note-9">NA<b>&nbsp;&nbsp;</b></a> 
+</div>
+
+<div class="jumbotron" id="list-10">
+  <a id="list-name-10">NA<b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+  <i class="icon-bell" id="list-time-10">&nbsp;NA &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>
+   <i class="icon-ok-sign" id="list-day-10"> &nbsp;NA &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+   </i><div class="text-right"><a style="color : black;" id="del-event-10"><i class="icon-trash"></i></a><hr></div>
+ <a id="list-note-10">NA<b>&nbsp;&nbsp;</b></a> 
+</div>
+
+
+<div class="jumbotron">
+  <a id=""><b>Example-Fitness&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+  <i class="icon-bell" id="">&nbsp;10 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>
+   <i class="icon-ok-sign" id=""> &nbsp;Monday &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+
+   </i><div class="text-right"><a style="color : black;" id=""><i class="icon-trash"></i></a><hr></div>
+ <a id="">Example-20 push-ups<b>&nbsp;&nbsp;</b></a> 
+</div>
+
+<div class="jumbotron">
+  <a id=""><b>Example-Work&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></a>
+  <i class="icon-bell" id="">&nbsp;11&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </i>
+   <i class="icon-ok-sign" id=""> &nbsp;Sunday &nbsp;
+
+   </i><div class="text-right"><a style="color : black;" id=""><i class="icon-trash"></i></a><hr></div>
+ <a id="">Example-Completing presentation<b>&nbsp;&nbsp;</b></a> 
+</div>
+
+<hr>
+<!------------------------------------------------ Footer ------------------------------------------------------------>
+  <div style="width:100%; padding:20px; background:white; color:black;font-family:Leelawadee UI " class="text-left">
+    <img src="pill.jpg" style="width: 25px; height: 25px; "></img>&nbsp;&nbsp;&nbsp;Copyright © reserved &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+  Made proudly by Rare Instructor at rareinstructor69@gmail.com &nbsp;&nbsp;&nbsp;<br>
+  <div class="text-center"><a href="https://www.rareinstructor69@gmail.com" style="text-decoration: none;" target="_blank"><i class="icon-envelope">&nbsp;&nbsp;&nbsp;&nbsp;</i></a>
+  <a href="https://www.instagram.com/Soukaryo"  style="text-decoration: none;" target="_blank"><i class="icon-instagram" >&nbsp;&nbsp;&nbsp;&nbsp;</i></a>
+  <a href="https://www.github.com/Rare-Instructor" style="text-decoration: none;" target="_blank"><i class="icon-github">&nbsp;&nbsp;&nbsp;&nbsp;</i></a></div>
+  </div>
+
+  </div>
+<!-- -------------------------------------------------Linking ---------------------------------------------------->
+      <script src="index.js"></script>
+      <script src="addevent.js"></script>
+</body>
+</div>
+</div>
+</html>
